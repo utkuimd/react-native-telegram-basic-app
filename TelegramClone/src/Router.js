@@ -7,14 +7,16 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import Contacts from './pages/contacts/Contacts';
 import Chats from './pages/chats/Chats';
 import Settings from './pages/settings/Settings';
+import UserChat from './pages/userchat/UserChat';
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
 
 const ContactStack = () => {
   return (
-    <Stack.Navigator>
+    <Stack.Navigator screenOptions={{headerShown: false}}>
       <Stack.Screen name="ContactScreen" component={Contacts} />
+      <Stack.Screen name="UserChatScreen" component={UserChat} />
     </Stack.Navigator>
   );
 };
@@ -38,7 +40,7 @@ const SettingsStack = () => {
 function App() {
   return (
     <NavigationContainer>
-      <Tab.Navigator>
+      <Tab.Navigator screenOptions={{headerShown: false}}>
         <Tab.Screen name="Contacts" component={ContactStack} />
         <Tab.Screen name="Chats" component={ChatStack} />
         <Tab.Screen name="Settings" component={SettingsStack} />
