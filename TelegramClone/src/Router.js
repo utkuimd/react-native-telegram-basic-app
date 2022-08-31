@@ -16,7 +16,6 @@ const ContactStack = () => {
   return (
     <Stack.Navigator screenOptions={{headerShown: false}}>
       <Stack.Screen name="ContactScreen" component={Contacts} />
-      <Stack.Screen name="UserChatScreen" component={UserChat} />
     </Stack.Navigator>
   );
 };
@@ -44,6 +43,14 @@ function App() {
         <Tab.Screen name="Contacts" component={ContactStack} />
         <Tab.Screen name="Chats" component={ChatStack} />
         <Tab.Screen name="Settings" component={SettingsStack} />
+        <Tab.Screen
+          name="UserChatScreen"
+          component={UserChat}
+          options={{
+            tabBarStyle: {display: 'none'},
+            tabBarButton: () => null,
+          }}
+        />
       </Tab.Navigator>
     </NavigationContainer>
   );
