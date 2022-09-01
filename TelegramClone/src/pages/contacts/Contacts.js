@@ -17,6 +17,8 @@ const Contacts = props => {
           profilePicture: contact.profilePictureURL,
           firstName: contact.firstName,
           lastName: contact.lastName,
+          lastSeen: contact.lastSeen,
+          id: contact.id,
         };
         props.navigation.navigate('UserChatScreen', {userObject});
       }
