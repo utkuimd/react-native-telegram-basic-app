@@ -8,6 +8,7 @@ import {
   TextInput,
   TouchableOpacity,
   Image,
+  ImageBackground,
 } from 'react-native';
 import {MessageContext} from '../../contexts/messages';
 import IconFeather from 'react-native-vector-icons/Feather';
@@ -63,17 +64,23 @@ const UserChat = props => {
       </View>
       {/*--------BODY---------*/}
       <View style={styles.body}>
-        {userMessage.map(message => {
-          return (
-            <View
-              style={styles.sendedMessage}
-              key={message.messageId.toString()}>
-              <Text style={styles.sendedMessage_text}>
-                {message.messageText}
-              </Text>
-            </View>
-          );
-        })}
+        <ImageBackground
+          source={{
+            uri: 'https://i.pinimg.com/originals/bc/da/1d/bcda1d0c891d235fbf680a893265d68f.jpg',
+          }}
+          style={styles.backgroundImage}>
+          {userMessage.map(message => {
+            return (
+              <View
+                style={styles.sendedMessage}
+                key={message.messageId.toString()}>
+                <Text style={styles.sendedMessage_text}>
+                  {message.messageText}
+                </Text>
+              </View>
+            );
+          })}
+        </ImageBackground>
       </View>
       {/*--------FOOTER---------*/}
       <View style={styles.footer}>
@@ -146,6 +153,10 @@ const styles = StyleSheet.create({
   },
   body: {
     flex: 1,
+  },
+  backgroundImage: {
+    width: '100%',
+    height: '100%',
     alignItems: 'flex-end',
     justifyContent: 'flex-end',
   },
