@@ -9,6 +9,8 @@ import Chats from './pages/chats/Chats';
 import Settings from './pages/settings/Settings';
 import UserChat from './pages/userchat/UserChat';
 
+import MessageProvider from './providers/MessageProvider';
+
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
 
@@ -39,19 +41,21 @@ const SettingsStack = () => {
 function App() {
   return (
     <NavigationContainer>
-      <Tab.Navigator screenOptions={{headerShown: false}}>
-        <Tab.Screen name="Contacts" component={ContactStack} />
-        <Tab.Screen name="Chats" component={ChatStack} />
-        <Tab.Screen name="Settings" component={SettingsStack} />
-        <Tab.Screen
-          name="UserChatScreen"
-          component={UserChat}
-          options={{
-            tabBarStyle: {display: 'none'},
-            tabBarButton: () => null,
-          }}
-        />
-      </Tab.Navigator>
+      <MessageProvider>
+        <Tab.Navigator screenOptions={{headerShown: false}}>
+          <Tab.Screen name="Contacts" component={ContactStack} />
+          <Tab.Screen name="Chats" component={ChatStack} />
+          <Tab.Screen name="Settings" component={SettingsStack} />
+          <Tab.Screen
+            name="UserChatScreen"
+            component={UserChat}
+            options={{
+              tabBarStyle: {display: 'none'},
+              tabBarButton: () => null,
+            }}
+          />
+        </Tab.Navigator>
+      </MessageProvider>
     </NavigationContainer>
   );
 }
