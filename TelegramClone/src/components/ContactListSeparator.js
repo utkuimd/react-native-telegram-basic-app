@@ -4,8 +4,8 @@ import {SafeAreaView, View, StyleSheet} from 'react-native';
 const ContactListSeparator = () => {
   return (
     <SafeAreaView style={styles.container}>
-      <View style={styles.transparent}></View>
-      <View style={styles.nonTransparent}></View>
+      <View style={styles.transparent} />
+      <View style={styles.nonTransparent} />
     </SafeAreaView>
   );
 };
@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
   nonTransparent: {
     flex: 1,
     borderWidth: 1,
-    borderColor: '#d2d2d2',
+    borderColor: '#d3d3d3',
   },
 });
 

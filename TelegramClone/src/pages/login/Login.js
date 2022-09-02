@@ -12,7 +12,7 @@ import CountryCode from '../../CountryCodes.json';
 import {UserContext} from '../../contexts/user';
 
 const Login = props => {
-  const {user, setUser} = useContext(UserContext);
+  const {setUser} = useContext(UserContext);
   const [selectedCountryCode, setSelectedCountryCode] = useState();
   const [phoneNumber, setPhoneNumber] = useState('');
   const [name, setName] = useState('');
@@ -108,7 +108,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   welcomeText: {
-    color: '#7df9ff',
+    color: '#1F51FF',
     fontSize: 32,
     fontWeight: 'bold',
     width: '80%',
@@ -164,10 +164,8 @@ const styles = StyleSheet.create({
   loginButton: {
     width: '80%',
     height: '8%',
-    backgroundColor: '#7df9ff',
+    backgroundColor: '#1F51FF',
     borderRadius: 10,
-    borderWidth: 2,
-    borderColor: '#7df9ff',
     alignItems: 'center',
     justifyContent: 'center',
     marginTop: 60,
