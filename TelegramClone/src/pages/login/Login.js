@@ -27,6 +27,11 @@ const Login = props => {
       surname: surname,
       username: username,
     });
+    setName('');
+    setSurname('');
+    setUsername('');
+    setPhoneNumber('');
+    setSelectedCountryCode(null);
     props.navigation.navigate('TabNavScreens');
   };
 
@@ -123,7 +128,7 @@ const styles = StyleSheet.create({
     width: '40%',
     height: '100%',
     backgroundColor: '#e9e9e9',
-    borderRadius: 10,
+    borderRadius: 15,
     borderWidth: 2,
     borderColor: '#d3d3d3',
     overflow: 'hidden',
@@ -136,7 +141,7 @@ const styles = StyleSheet.create({
     width: '60%',
     height: '100%',
     backgroundColor: '#e9e9e9',
-    borderRadius: 10,
+    borderRadius: 15,
     borderWidth: 2,
     borderColor: '#d3d3d3',
     alignItems: 'center',
@@ -146,7 +151,7 @@ const styles = StyleSheet.create({
     width: '80%',
     height: '8%',
     backgroundColor: '#e9e9e9',
-    borderRadius: 10,
+    borderRadius: 15,
     borderWidth: 2,
     borderColor: '#d3d3d3',
     marginTop: 20,
@@ -165,7 +170,7 @@ const styles = StyleSheet.create({
     width: '80%',
     height: '8%',
     backgroundColor: '#1F51FF',
-    borderRadius: 10,
+    borderRadius: 15,
     alignItems: 'center',
     justifyContent: 'center',
     marginTop: 60,

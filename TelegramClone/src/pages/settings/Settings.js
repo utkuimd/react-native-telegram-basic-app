@@ -12,11 +12,17 @@ import {ThemeContext} from '../../contexts/theme';
 
 const Settings = props => {
   const {theme} = useContext(ThemeContext);
+  const {setUser} = useContext(UserContext);
+
   const gotoEditScreen = () => {
     props.navigation.navigate('EditProfileScreen');
   };
   const gotoChangeThemeScreen = () => {
     props.navigation.navigate('ChangeThemeScreen');
+  };
+  const eraseUserData = () => {
+    setUser(null);
+    props.navigation.navigate('LoginScreen');
   };
 
   return (
@@ -33,7 +39,7 @@ const Settings = props => {
       <TouchableOpacity style={styles.button} onPress={gotoChangeThemeScreen}>
         <Text style={styles.button_text}>Change Theme</Text>
       </TouchableOpacity>
-      <TouchableOpacity style={styles.logoutButton} onPress={null}>
+      <TouchableOpacity style={styles.logoutButton} onPress={eraseUserData}>
         <Text style={styles.logoutText}>Logout!</Text>
       </TouchableOpacity>
     </SafeAreaView>
@@ -131,7 +137,6 @@ const styles = StyleSheet.create({
   },
   userinfo_phonenumber_text: {
     fontSize: 20,
-    marginLeft: 5,
   },
 });
 
