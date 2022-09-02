@@ -7,9 +7,12 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import Contacts from './pages/contacts/Contacts';
 import Chats from './pages/chats/Chats';
 import Settings from './pages/settings/Settings';
+import EditProfile from './pages/settings/EditProfile';
 import UserChat from './pages/userchat/UserChat';
+import Login from './pages/login/Login';
 
 import MessageProvider from './providers/MessageProvider';
+import UserProvider from './providers/UserProvider';
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -34,28 +37,40 @@ const SettingsStack = () => {
   return (
     <Stack.Navigator>
       <Stack.Screen name="SettingsScreen" component={Settings} />
+      <Stack.Screen name="EditProfileScreen" component={EditProfile} />
     </Stack.Navigator>
+  );
+};
+
+const TabNav = () => {
+  return (
+    <Tab.Navigator screenOptions={{headerShown: false}}>
+      <Tab.Screen name="Contacts" component={ContactStack} />
+      <Tab.Screen name="Chats" component={ChatStack} />
+      <Tab.Screen name="Settings" component={SettingsStack} />
+      <Tab.Screen
+        name="UserChatScreen"
+        component={UserChat}
+        options={{
+          tabBarStyle: {display: 'none'},
+          tabBarButton: () => null,
+        }}
+      />
+    </Tab.Navigator>
   );
 };
 
 function App() {
   return (
     <NavigationContainer>
-      <MessageProvider>
-        <Tab.Navigator screenOptions={{headerShown: false}}>
-          <Tab.Screen name="Contacts" component={ContactStack} />
-          <Tab.Screen name="Chats" component={ChatStack} />
-          <Tab.Screen name="Settings" component={SettingsStack} />
-          <Tab.Screen
-            name="UserChatScreen"
-            component={UserChat}
-            options={{
-              tabBarStyle: {display: 'none'},
-              tabBarButton: () => null,
-            }}
-          />
-        </Tab.Navigator>
-      </MessageProvider>
+      <UserProvider>
+        <MessageProvider>
+          <Stack.Navigator screenOptions={{headerShown: false}}>
+            <Stack.Screen name="LoginScreen" component={Login} />
+            <Stack.Screen name="TabNavScreens" component={TabNav} />
+          </Stack.Navigator>
+        </MessageProvider>
+      </UserProvider>
     </NavigationContainer>
   );
 }
