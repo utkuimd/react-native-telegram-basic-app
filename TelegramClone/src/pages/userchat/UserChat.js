@@ -11,6 +11,7 @@ import {
   ImageBackground,
 } from 'react-native';
 import {MessageContext} from '../../contexts/messages';
+import {ThemeContext} from '../../contexts/theme';
 import IconFeather from 'react-native-vector-icons/Feather';
 import IconMatCommunity from 'react-native-vector-icons/MaterialCommunityIcons';
 
@@ -18,6 +19,8 @@ const UserChat = props => {
   const userObject = props.route.params.userObject;
 
   const {allMessage, setAllMessage} = useContext(MessageContext);
+  const {theme} = useContext(ThemeContext);
+
   const [messageId, setMessageId] = useState(0);
   const [messageText, setMessageText] = useState('');
 
@@ -45,15 +48,15 @@ const UserChat = props => {
   return (
     <SafeAreaView style={styles.container}>
       {/*--------HEADER---------*/}
-      <View style={styles.header}>
+      <View style={[styles.header, {backgroundColor: theme.headerColor}]}>
         <TouchableOpacity style={styles.goBack} onPress={goBack}>
           <IconFeather name="chevron-left" size={40} color="#1F51FF" />
           <Text style={styles.goBack_text}>Back</Text>
         </TouchableOpacity>
         <View style={styles.userDetails}>
           <View style={styles.userName}>
-            <Text style={styles.firstName}>{userObject.firstName}</Text>
-            <Text style={styles.lastName}>{userObject.lastName}</Text>
+            <Text style={[styles.firstName, {color: theme.color}]}>{userObject.firstName}</Text>
+            <Text style={[styles.lastName, {color: theme.color}]}>{userObject.lastName}</Text>
           </View>
           <Text style={styles.lastSeen}>{userObject.lastSeen}</Text>
         </View>
@@ -65,9 +68,7 @@ const UserChat = props => {
       {/*--------BODY---------*/}
       <View style={styles.body}>
         <ImageBackground
-          source={{
-            uri: 'https://i.pinimg.com/originals/bc/da/1d/bcda1d0c891d235fbf680a893265d68f.jpg',
-          }}
+          source={{uri: theme.imageBackground}}
           style={styles.backgroundImage}>
           {userMessage.map(message => {
             return (
@@ -83,14 +84,16 @@ const UserChat = props => {
         </ImageBackground>
       </View>
       {/*--------FOOTER---------*/}
-      <View style={styles.footer}>
+      <View style={[styles.footer, {backgroundColor: theme.headerColor}]}>
         <IconFeather name="paperclip" size={30} color="#949494" />
-        <View style={styles.sendMessage}>
+        <View
+          style={[styles.sendMessage, {backgroundColor: theme.textboxColor}]}>
           <TextInput
             placeholder="Message"
+            placeholderTextColor={'#949494'}
             value={messageText}
             onChangeText={setMessageText}
-            style={{maxWidth: '80%'}}
+            style={[styles.inputText, {color: theme.color}]}
           />
           <IconFeather name="pocket" size={25} color="#949494" />
         </View>
@@ -114,7 +117,6 @@ const styles = StyleSheet.create({
     height: Dimensions.get('window').height / 12,
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: '#e9e9e9',
     justifyContent: 'space-between',
     paddingRight: 10,
   },
@@ -135,16 +137,15 @@ const styles = StyleSheet.create({
   firstName: {
     fontSize: 20,
     fontWeight: 'bold',
-    color: 'black',
   },
   lastName: {
     fontSize: 20,
     fontWeight: 'bold',
-    color: 'black',
     marginLeft: 5,
   },
   lastSeen: {
     fontSize: 16,
+    color: 'gray',
   },
   profilePicture: {
     width: 50,
@@ -175,7 +176,6 @@ const styles = StyleSheet.create({
   footer: {
     width: '100%',
     height: Dimensions.get('window').height / 15,
-    backgroundColor: '#d3d3d3',
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
@@ -183,7 +183,6 @@ const styles = StyleSheet.create({
     paddingRight: 15,
   },
   sendMessage: {
-    //width: '50%',
     flex: 1,
     height: 40,
     borderRadius: 20,
@@ -195,6 +194,9 @@ const styles = StyleSheet.create({
     paddingRight: 10,
     marginLeft: 15,
     marginRight: 15,
+  },
+  inputText: {
+    maxWidth: '80%',
   },
   message: {
     fontSize: 16,

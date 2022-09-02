@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {
   SafeAreaView,
   FlatList,
@@ -8,15 +8,19 @@ import {
   Text,
 } from 'react-native';
 import {MessageContext} from '../../contexts/messages';
+import {ThemeContext} from '../../contexts/theme';
 import ChatPreview from '../../components/ChatPreview';
 import IconFeather from 'react-native-vector-icons/Feather';
 
 const Chats = () => {
+  const {theme} = useContext(ThemeContext);
+
   return (
-    <SafeAreaView styles={styles.container}>
-      <View style={styles.header}>
+    <SafeAreaView
+      style={[styles.container, {backgroundColor: theme.backgroundColor}]}>
+      <View style={[styles.header, {backgroundColor: theme.headerColor}]}>
         <Text style={styles.editText}>Edit</Text>
-        <Text style={styles.chatsText}>Chats</Text>
+        <Text style={[styles.chatsText, {color: theme.color}]}>Chats</Text>
         <IconFeather name="edit" size={30} color="#1F51FF" />
       </View>
       <Chatlist />
@@ -52,7 +56,6 @@ const styles = StyleSheet.create({
   header: {
     width: '100%',
     height: Dimensions.get('window').height / 12,
-    backgroundColor: '#e9e9e9',
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
@@ -64,7 +67,6 @@ const styles = StyleSheet.create({
     fontSize: 20,
   },
   chatsText: {
-    color: 'black',
     fontSize: 26,
     fontWeight: 'bold',
   },

@@ -1,7 +1,10 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {Image, Text, View, TouchableOpacity, StyleSheet} from 'react-native';
+import {ThemeContext} from '../contexts/theme';
 
 const ContactList = ({contact, gotoUserChat}) => {
+  const {theme} = useContext(ThemeContext);
+
   return (
     <TouchableOpacity
       style={styles.container}
@@ -12,8 +15,8 @@ const ContactList = ({contact, gotoUserChat}) => {
       />
       <View style={styles.body}>
         <View style={styles.userName}>
-          <Text style={styles.firstName}>{contact.firstName}</Text>
-          <Text style={styles.lastName}>{contact.lastName}</Text>
+          <Text style={[styles.firstName, {color: theme.color}]}>{contact.firstName}</Text>
+          <Text style={[styles.lastName, {color: theme.color}]}>{contact.lastName}</Text>
         </View>
         <Text style={styles.lastSeen}>{contact.lastSeen}</Text>
       </View>
@@ -44,15 +47,14 @@ const styles = StyleSheet.create({
   firstName: {
     fontSize: 20,
     fontWeight: 'bold',
-    color: 'black',
   },
   lastName: {
     fontSize: 20,
-    color: 'black',
     marginLeft: 5,
   },
   lastSeen: {
     fontSize: 15,
+    color: 'gray',
   },
 });
 

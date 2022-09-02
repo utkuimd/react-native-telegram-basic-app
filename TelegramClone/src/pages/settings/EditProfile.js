@@ -10,9 +10,12 @@ import {
 import {Picker} from '@react-native-picker/picker';
 import CountryCode from '../../CountryCodes.json';
 import {UserContext} from '../../contexts/user';
+import {ThemeContext} from '../../contexts/theme';
 
 const EditProfile = props => {
   const {user, setUser} = useContext(UserContext);
+  const {theme} = useContext(ThemeContext);
+
   const [selectedCountryCode, setSelectedCountryCode] = useState();
   const [phoneNumber, setPhoneNumber] = useState('');
   const [name, setName] = useState('');
@@ -31,7 +34,8 @@ const EditProfile = props => {
   };
 
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView
+      style={[styles.container, {backgroundColor: theme.backgroundColor}]}>
       <Text style={styles.title}>Edit Profile</Text>
 
       <View style={styles.getPhoneNumber}>
@@ -108,7 +112,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   title: {
-    color: '#7df9ff',
+    color: '#1F51FF',
     fontSize: 32,
     fontWeight: 'bold',
     marginBottom: 60,
@@ -122,7 +126,7 @@ const styles = StyleSheet.create({
     width: '40%',
     height: '100%',
     backgroundColor: '#e9e9e9',
-    borderRadius: 10,
+    borderRadius: 15,
     borderWidth: 2,
     borderColor: '#d3d3d3',
     overflow: 'hidden',
@@ -135,7 +139,7 @@ const styles = StyleSheet.create({
     width: '60%',
     height: '100%',
     backgroundColor: '#e9e9e9',
-    borderRadius: 10,
+    borderRadius: 15,
     borderWidth: 2,
     borderColor: '#d3d3d3',
     alignItems: 'center',
@@ -145,7 +149,7 @@ const styles = StyleSheet.create({
     width: '80%',
     height: '8%',
     backgroundColor: '#e9e9e9',
-    borderRadius: 10,
+    borderRadius: 15,
     borderWidth: 2,
     borderColor: '#d3d3d3',
     marginTop: 20,
@@ -163,10 +167,8 @@ const styles = StyleSheet.create({
   editButton: {
     width: '80%',
     height: '8%',
-    backgroundColor: '#7df9ff',
-    borderRadius: 10,
-    borderWidth: 2,
-    borderColor: '#7df9ff',
+    backgroundColor: '#1F51FF',
+    borderRadius: 15,
     alignItems: 'center',
     justifyContent: 'center',
     marginTop: 60,

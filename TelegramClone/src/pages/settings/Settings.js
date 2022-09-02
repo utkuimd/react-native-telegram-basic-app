@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {
   SafeAreaView,
   Text,
@@ -8,14 +8,20 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import {UserContext} from '../../contexts/user';
+import {ThemeContext} from '../../contexts/theme';
 
 const Settings = props => {
+  const {theme} = useContext(ThemeContext);
   const gotoEditScreen = () => {
     props.navigation.navigate('EditProfileScreen');
   };
+  const gotoChangeThemeScreen = () => {
+    props.navigation.navigate('ChangeThemeScreen');
+  };
 
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView
+      style={[styles.container, {backgroundColor: theme.backgroundColor}]}>
       <Image
         style={styles.myProfilePicture}
         source={{uri: 'https://avatars.githubusercontent.com/u/107312837?v=4'}}
@@ -24,7 +30,7 @@ const Settings = props => {
       <TouchableOpacity style={styles.button} onPress={gotoEditScreen}>
         <Text style={styles.button_text}>Edit Profile</Text>
       </TouchableOpacity>
-      <TouchableOpacity style={styles.button} onPress={null}>
+      <TouchableOpacity style={styles.button} onPress={gotoChangeThemeScreen}>
         <Text style={styles.button_text}>Change Theme</Text>
       </TouchableOpacity>
       <TouchableOpacity style={styles.logoutButton} onPress={null}>
@@ -35,18 +41,19 @@ const Settings = props => {
 };
 
 const UserInfo = () => {
+  const {theme} = useContext(ThemeContext);
   return (
     <UserContext.Consumer>
       {value => (
         <View style={styles.userinfo_container}>
           <View style={styles.userinfo_name_div}>
-            <Text style={styles.userinfo_name_text}>{value.user.name}</Text>
-            <Text style={styles.userinfo_surname_text}>{value.user.surname}</Text>
+            <Text style={[styles.userinfo_name_text, {color: theme.color}]}>{value.user.name}</Text>
+            <Text style={[styles.userinfo_surname_text, {color: theme.color}]}>{value.user.surname}</Text>
           </View>
-          <Text style={styles.userinfo_username_text}>{value.user.username}</Text>
+          <Text style={[styles.userinfo_username_text, {color: theme.color}]}>{value.user.username}</Text>
           <View style={styles.userinfo_phone_div}>
-            <Text style={styles.userinfo_countrycode_text}>{value.user.countryCode}</Text>
-            <Text style={styles.userinfo_phonenumber_text}>{value.user.phoneNumber}</Text>
+            <Text style={[styles.userinfo_countrycode_text, {color: theme.color}]}>{value.user.countryCode}</Text>
+            <Text style={[styles.userinfo_phonenumber_text, {color: theme.color}]}>{value.user.phoneNumber}</Text>
           </View>
         </View>
       )}
@@ -61,14 +68,14 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   myProfilePicture: {
-    width: 100,
-    height: 100,
-    borderRadius: 100 / 2,
+    width: 120,
+    height: 120,
+    borderRadius: 120 / 2,
   },
   button: {
     width: '60%',
     height: '8%',
-    backgroundColor: '#7df9ff',
+    backgroundColor: '#1F51FF',
     borderRadius: 15,
     alignItems: 'center',
     justifyContent: 'center',
@@ -94,10 +101,9 @@ const styles = StyleSheet.create({
   userinfo_container: {
     width: '50%',
     height: '18%',
-    //backgroundColor: 'green',
     alignItems: 'center',
     justifyContent: 'center',
-    marginBottom: 80,
+    marginBottom: 60,
   },
   userinfo_name_div: {
     flexDirection: 'row',
