@@ -33,16 +33,16 @@ function Chatlist() {
     <MessageContext.Consumer>
       {value => (
         <FlatList
-          data={value.allMessage
-            .map(message => message.receiverId)
-            .filter((receiverIDs, index) => {
+          data={value.allMessage                  //Get all messages from all users
+            .map(message => message.receiverId)   //Get only receiverId these messages
+            .filter((receiverIDs, index) => {     //Remove same receiverIDs
               return (
                 value.allMessage
                   .map(message => message.receiverId)
-                  .indexOf(receiverIDs) === index
+                  .indexOf(receiverIDs) === index //Result : contact-1, contact-2...
               );
             })}
-          renderItem={({item}) => <ChatPreview receiverID={item} />}
+          renderItem={({item}) => <ChatPreview receiverID={item} />} //Render these IDs.
         />
       )}
     </MessageContext.Consumer>

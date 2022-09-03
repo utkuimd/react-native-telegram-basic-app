@@ -46,8 +46,9 @@ const styles = StyleSheet.create({
   },
   userName: {
     flexDirection: 'row',
-    marginLeft: 10,
-    marginTop: 5,
+    marginLeft: 15,
+    alignSelf: 'center',
+    marginBottom: 15,
   },
   firstName: {
     fontSize: 18,
