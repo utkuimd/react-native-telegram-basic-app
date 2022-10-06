@@ -1,6 +1,6 @@
 
 ***PROJECT DESCRIPTION*** :<br>
-+ It is clone of the Telegram mobile app which build with React Native framework.<br>
++ It is basic clone of the Telegram mobile app.<br>
 + Create user object with UserContext and login to this app.<br>
 + Add more contact from contact-list.json.<br>
 + You can send message any user from your contact list.<br>
