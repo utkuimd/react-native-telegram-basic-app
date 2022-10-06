@@ -15,7 +15,7 @@
 This gif length is 3 minute.<br>
 ![](assets/odev-3-gif-edited-300px.gif)
 
-***REQUİRED*** :<br>
+***REQUIRED*** :<br>
 :heavy_check_mark: This project was created by using React Native CLI.<br>
 :heavy_check_mark: Pages are scrollable.<br>
 :heavy_check_mark: In this project, a lots of commit pushed to the repository.<br>
@@ -23,7 +23,7 @@ This gif length is 3 minute.<br>
 :heavy_check_mark: Components are reusable.<br>
 :heavy_check_mark: I didn't get any errors from ESLint.<br>
 
-***OTHER NOTES*** :<br>
+***USED TECHNOLOGIES AND HOW THEY CAN INSTALL*** :<br>
 + I used "react-navigation" packet in this project. You can install this packet, as follows steps in this guide.<br>
 + https://reactnavigation.org/docs/getting-started#installation<br>
 + I used "react-native-vector-icons" packet in this project. You can install this packet, as follows steps in this guide.<br>
